@@ -1,7 +1,7 @@
 # ginm & gox
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/lwmacct/251219-go-pkg-ginm.svg)](https://pkg.go.dev/github.com/lwmacct/251219-go-pkg-ginm)
-[![Go Report Card](https://goreportcard.com/badge/github.com/lwmacct/251219-go-pkg-ginm)](https://goreportcard.com/report/github.com/lwmacct/251219-go-pkg-ginm)
+[![GitHub Tag](https://img.shields.io/github/v/tag/lwmacct/251219-go-pkg-ginm?sort=semver)](https://github.com/lwmacct/251219-go-pkg-ginm/tags)
 
 > Type-safe Gin utilities and generic helpers for Go 1.18+
 >
