@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  build:
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +32,7 @@ jobs:
           fail_ci_if_error: false
 
   lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
