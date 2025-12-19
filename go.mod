@@ -1,6 +1,6 @@
 module github.com/lwmacct/251219-go-pkg-ginm
 
-go 1.25.4
+go 1.25
 
 require (
 	github.com/gin-gonic/gin v1.11.0
