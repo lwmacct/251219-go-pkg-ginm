@@ -1,0 +1,40 @@
+linters:
+  enable-all: true
+  disable:
+    # 已废弃
+    - execinquery
+    - exportloopref
+    - gomnd
+    # 与其他 linter 冲突
+    - gofumpt # 与 gofmt 冲突
+    - gci # 与 goimports 冲突
+    - depguard # 需要配置依赖白名单
+    # 过于严格/噪音大
+    - wrapcheck # 要求所有错误都 wrap
+    - exhaustruct # 要求所有字段都初始化
+    - ireturn # 禁止返回接口
+    - varnamelen # 变量名长度限制
+    - nlreturn # return 前必须空行
+    - wsl # 空行规则过严
+    - funlen # 函数长度限制
+    - gocognit # 认知复杂度
+    - cyclop # 圈复杂度
+    - lll # 行长度限制
+    - godox # 禁止 TODO/FIXME
+
+linters-settings:
+  govet:
+    enable-all: true
+  misspell:
+    locale: US
+  nakedret:
+    max-func-lines: 30
+  tagliatelle:
+    case:
+      rules:
+        json: snake
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0

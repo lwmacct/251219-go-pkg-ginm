@@ -1,7 +1,11 @@
 # ginm & gox
 
+[![Go CI](https://github.com/lwmacct/251219-go-pkg-ginm/actions/workflows/go-ci.yml/badge.svg)](https://github.com/lwmacct/251219-go-pkg-ginm/actions/workflows/go-ci.yml)
+[![codecov](https://codecov.io/gh/lwmacct/251219-go-pkg-ginm/branch/main/graph/badge.svg)](https://codecov.io/gh/lwmacct/251219-go-pkg-ginm)
 [![Go Reference](https://pkg.go.dev/badge/github.com/lwmacct/251219-go-pkg-ginm.svg)](https://pkg.go.dev/github.com/lwmacct/251219-go-pkg-ginm)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lwmacct/251219-go-pkg-ginm)](https://goreportcard.com/report/github.com/lwmacct/251219-go-pkg-ginm)
 [![GitHub Tag](https://img.shields.io/github/v/tag/lwmacct/251219-go-pkg-ginm?sort=semver)](https://github.com/lwmacct/251219-go-pkg-ginm/tags)
+[![License](https://img.shields.io/github/license/lwmacct/251219-go-pkg-ginm)](LICENSE)
 
 > Type-safe Gin utilities and generic helpers for Go 1.18+
 >
@@ -21,10 +25,10 @@ go get github.com/lwmacct/251219-go-pkg-ginm/pkg/gox
 
 本项目包含两个独立的包：
 
-| 包 | 导入路径 | 定位 |
-|----|----------|------|
-| **ginm** | `github.com/lwmacct/251219-go-pkg-ginm/pkg/ginm` | Gin 框架类型安全辅助 |
-| **gox** | `github.com/lwmacct/251219-go-pkg-ginm/pkg/gox` | 通用泛型工具（无框架依赖） |
+| 包       | 导入路径                                         | 定位                       |
+| -------- | ------------------------------------------------ | -------------------------- |
+| **ginm** | `github.com/lwmacct/251219-go-pkg-ginm/pkg/ginm` | Gin 框架类型安全辅助       |
+| **gox**  | `github.com/lwmacct/251219-go-pkg-ginm/pkg/gox`  | 通用泛型工具（无框架依赖） |
 
 ## ginm - Gin 辅助包
 
@@ -59,16 +63,16 @@ go get github.com/lwmacct/251219-go-pkg-ginm/pkg/gox
 
 ### gox 核心特性
 
-| 模块             | 功能                                             |
-| ---------------- | ------------------------------------------------ |
-| **函数式工具**   | `Map`, `Filter`, `Reduce`, `GroupBy`, `Chunk`    |
-| **Result**       | Rust 风格 `Result[T]` 显式错误处理               |
-| **Optional**     | `Optional[T]` 空值安全                           |
-| **数值工具**     | `Sum`, `Max`, `Min`, `Average`, `Clamp`, `Range` |
-| **集合操作**     | `Intersect`, `Union`, `Difference`, `Partition`  |
-| **类型转换**     | `ParseInt`, `ParseFloat`, `ParseBool` + Result   |
-| **错误聚合**     | `MultiError` 批量操作错误收集                    |
-| **指针工具**     | `Ptr`, `Val`, `Coalesce`                         |
+| 模块           | 功能                                             |
+| -------------- | ------------------------------------------------ |
+| **函数式工具** | `Map`, `Filter`, `Reduce`, `GroupBy`, `Chunk`    |
+| **Result**     | Rust 风格 `Result[T]` 显式错误处理               |
+| **Optional**   | `Optional[T]` 空值安全                           |
+| **数值工具**   | `Sum`, `Max`, `Min`, `Average`, `Clamp`, `Range` |
+| **集合操作**   | `Intersect`, `Union`, `Difference`, `Partition`  |
+| **类型转换**   | `ParseInt`, `ParseFloat`, `ParseBool` + Result   |
+| **错误聚合**   | `MultiError` 批量操作错误收集                    |
+| **指针工具**   | `Ptr`, `Val`, `Coalesce`                         |
 
 ## Development
 
