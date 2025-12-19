@@ -1,11 +1,11 @@
 # ginm & gox
 
+[![License](https://img.shields.io/github/license/lwmacct/251219-go-pkg-ginm)](LICENSE)
+[![Go Reference](https://pkg.go.dev/badge/github.com/lwmacct/251219-go-pkg-ginm.svg)](https://pkg.go.dev/github.com/lwmacct/251219-go-pkg-ginm)
 [![Go CI](https://github.com/lwmacct/251219-go-pkg-ginm/actions/workflows/go-ci.yml/badge.svg)](https://github.com/lwmacct/251219-go-pkg-ginm/actions/workflows/go-ci.yml)
 [![codecov](https://codecov.io/gh/lwmacct/251219-go-pkg-ginm/branch/main/graph/badge.svg)](https://codecov.io/gh/lwmacct/251219-go-pkg-ginm)
-[![Go Reference](https://pkg.go.dev/badge/github.com/lwmacct/251219-go-pkg-ginm.svg)](https://pkg.go.dev/github.com/lwmacct/251219-go-pkg-ginm)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lwmacct/251219-go-pkg-ginm)](https://goreportcard.com/report/github.com/lwmacct/251219-go-pkg-ginm)
 [![GitHub Tag](https://img.shields.io/github/v/tag/lwmacct/251219-go-pkg-ginm?sort=semver)](https://github.com/lwmacct/251219-go-pkg-ginm/tags)
-[![License](https://img.shields.io/github/license/lwmacct/251219-go-pkg-ginm)](LICENSE)
 
 > Type-safe Gin utilities and generic helpers for Go 1.18+
 >
