@@ -25,7 +25,7 @@ type testQueryParams struct {
 	PageSize int    `form:"page_size"`
 }
 
-func createTestContext(method, path string, body []byte, contentType string) (*gin.Context, *httptest.ResponseRecorder) {
+func createTestContext(method, path string, body []byte, contentType string) *gin.Context {
 	w := httptest.NewRecorder()
 	req := httptest.NewRequest(method, path, bytes.NewReader(body))
 	if contentType != "" {
@@ -33,12 +33,12 @@ func createTestContext(method, path string, body []byte, contentType string) (*g
 	}
 	c, _ := gin.CreateTestContext(w)
 	c.Request = req
-	return c, w
+	return c
 }
 
 func TestBindJSON_Success(t *testing.T) {
 	body := []byte(`{"name": "John", "email": "john@example.com"}`)
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	result, err := BindJSON[testRequest](c)
 	require.NoError(t, err)
@@ -48,7 +48,7 @@ func TestBindJSON_Success(t *testing.T) {
 
 func TestBindJSON_ValidationError(t *testing.T) {
 	body := []byte(`{"email": "john@example.com"}`) // missing required name
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	_, err := BindJSON[testRequest](c)
 	require.Error(t, err)
@@ -60,14 +60,14 @@ func TestBindJSON_ValidationError(t *testing.T) {
 
 func TestBindJSON_InvalidJSON(t *testing.T) {
 	body := []byte(`{invalid json}`)
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	_, err := BindJSON[testRequest](c)
 	require.Error(t, err)
 }
 
 func TestBindQuery_Success(t *testing.T) {
-	c, _ := createTestContext("GET", "/?page=2&page_size=10&search=test", nil, "")
+	c := createTestContext("GET", "/?page=2&page_size=10&search=test", nil, "")
 
 	result, err := BindQuery[testQueryParams](c)
 	require.NoError(t, err)
@@ -77,7 +77,7 @@ func TestBindQuery_Success(t *testing.T) {
 }
 
 func TestBindQuery_EmptyParams(t *testing.T) {
-	c, _ := createTestContext("GET", "/", nil, "")
+	c := createTestContext("GET", "/", nil, "")
 
 	result, err := BindQuery[testQueryParams](c)
 	require.NoError(t, err)
@@ -87,7 +87,7 @@ func TestBindQuery_EmptyParams(t *testing.T) {
 
 func TestBindForm_Success(t *testing.T) {
 	body := []byte("name=John&email=john@example.com")
-	c, _ := createTestContext("POST", "/", body, "application/x-www-form-urlencoded")
+	c := createTestContext("POST", "/", body, "application/x-www-form-urlencoded")
 
 	result, err := BindForm[testRequest](c)
 	require.NoError(t, err)
@@ -96,7 +96,7 @@ func TestBindForm_Success(t *testing.T) {
 
 func TestMustBindJSON_Panics(t *testing.T) {
 	body := []byte(`{"email": "john@example.com"}`) // missing required name
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	assert.Panics(t, func() {
 		MustBindJSON[testRequest](c)
@@ -105,7 +105,7 @@ func TestMustBindJSON_Panics(t *testing.T) {
 
 func TestMustBindJSON_Success(t *testing.T) {
 	body := []byte(`{"name": "John"}`)
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	assert.NotPanics(t, func() {
 		result := MustBindJSON[testRequest](c)
@@ -115,7 +115,7 @@ func TestMustBindJSON_Success(t *testing.T) {
 
 func TestBindJSONR_ReturnsResult(t *testing.T) {
 	body := []byte(`{"name": "John"}`)
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	result := BindJSONR[testRequest](c)
 	assert.True(t, result.IsOk())
@@ -124,7 +124,7 @@ func TestBindJSONR_ReturnsResult(t *testing.T) {
 
 func TestBindJSONR_ReturnsErrorResult(t *testing.T) {
 	body := []byte(`{}`)
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	result := BindJSONR[testRequest](c)
 	assert.True(t, result.IsErr())
@@ -132,7 +132,7 @@ func TestBindJSONR_ReturnsErrorResult(t *testing.T) {
 
 func TestBindJSONO_ReturnsOptional(t *testing.T) {
 	body := []byte(`{"name": "John"}`)
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	opt := BindJSONO[testRequest](c)
 	assert.True(t, opt.IsSome())
@@ -141,7 +141,7 @@ func TestBindJSONO_ReturnsOptional(t *testing.T) {
 
 func TestBindJSONO_ReturnsNone(t *testing.T) {
 	body := []byte(`{}`)
-	c, _ := createTestContext("POST", "/", body, "application/json")
+	c := createTestContext("POST", "/", body, "application/json")
 
 	opt := BindJSONO[testRequest](c)
 	assert.True(t, opt.IsNone())

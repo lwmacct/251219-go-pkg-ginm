@@ -47,7 +47,7 @@ func TestMultiError_Errors_ReturnsAll(t *testing.T) {
 
 func TestMultiError_Error_ReturnsEmptyForNoErrors(t *testing.T) {
 	m := NewMultiError()
-	assert.Equal(t, "", m.Error())
+	assert.Empty(t, m.Error())
 }
 
 func TestMultiError_Error_ReturnsSingleError(t *testing.T) {

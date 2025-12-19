@@ -1,46 +1,82 @@
-linters:
-  disable-all: true
-  enable:
-    # 默认启用的核心 linter
-    - errcheck # 检查未处理的错误
-    - govet # 官方静态分析
-    - staticcheck # 高级静态分析
-    - unused # 未使用的代码
-    - gosimple # 简化代码建议
-    - ineffassign # 无效赋值检测
-    - typecheck # 类型检查
-    # 代码格式
-    - gofmt # 格式化检查
-    - goimports # import 排序
-    # 安全/Bug
-    - gosec # 安全漏洞检测
-    - nilerr # nil 错误检测
-    - bodyclose # HTTP body 关闭检查
-    - copyloopvar # 循环变量拷贝检查
-    # 代码质量
-    - unconvert # 不必要的类型转换
-    - misspell # 拼写检查
-    - nakedret # 裸返回检查
-    - prealloc # 切片预分配建议
-    - noctx # HTTP 请求 context 检查
-    - errchkjson # JSON 错误检查
-    # 注释/文档
-    - stylecheck # 注释格式规范 (exported func 注释格式)
-    # 测试质量
-    - thelper # 测试 helper 必须调用 t.Helper()
-    - testifylint # testify 断言最佳实践
+version: "2"
 
-linters-settings:
-  govet:
-    enable-all: true
-    disable:
-      - fieldalignment # 禁用字段对齐检查
-  misspell:
-    locale: US
-  nakedret:
-    max-func-lines: 30
+linters:
+  default: all
+  disable:
+    # 过于严格/不适用
+    - depguard # 需要配置依赖白名单
+    - wrapcheck # 要求所有错误都 wrap
+    - exhaustruct # 要求所有字段都初始化
+    - ireturn # 禁止返回接口
+    - varnamelen # 变量名长度限制
+    - nlreturn # return 前必须空行
+    - wsl_v5 # 空行规则过严
+    - funlen # 函数长度限制
+    - gocognit # 认知复杂度
+    - cyclop # 圈复杂度
+    - lll # 行长度限制
+    - godox # 禁止 TODO/FIXME
+    - godot # 注释句号结尾
+    - mnd # magic number
+    - err113 # 错误定义规则过严
+    - gochecknoglobals # 禁止全局变量
+    - gochecknoinits # 禁止 init 函数
+    - nonamedreturns # 禁止命名返回
+    - interfacebloat # 接口方法数限制
+    - maintidx # 可维护性指数
+    - nestif # 嵌套 if 检测
+    - goconst # 常量提取
+    - dupl # 重复代码
+    - inamedparam # 接口参数命名
+    - tagliatelle # struct tag 命名风格
+    - tagalign # struct tag 对齐
+    - musttag # 强制 struct tag
+    - goheader # 文件头检查
+    - gomoddirectives # go.mod 指令检查
+    - gomodguard # go.mod 依赖检查
+    - grouper # 表达式分组
+    - decorder # 声明顺序
+    - funcorder # 函数顺序
+    - containedctx # context 包含检查
+    - contextcheck # context 检查
+    - noinlineerr # 禁止内联错误处理
+    - paralleltest # 要求 t.Parallel()
+    - testpackage # 要求 _test 包
+    - tparallel # t.Parallel 检查
+    # 特定框架
+    - arangolint # ArangoDB
+    - ginkgolinter # Ginkgo
+    - zerologlint # zerolog
+    - loggercheck # logger 检查
+    - spancheck # OpenTelemetry
+    - promlinter # Prometheus
+    - protogetter # protobuf
+    - gosmopolitan # i18n
+    # 已弃用
+    - wsl
+    # 注释要求过严
+    - revive # 与 staticcheck 重复，规则过严
+    - errname # 错误命名规则
+    - goprintffuncname # printf 函数命名
+
+  settings:
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
+    misspell:
+      locale: US
+    nakedret:
+      max-func-lines: 30
+    gocritic: {}
+    exhaustive:
+      default-signifies-exhaustive: true
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
 
 issues:
-  exclude-use-default: false
   max-issues-per-linter: 0
   max-same-issues: 0

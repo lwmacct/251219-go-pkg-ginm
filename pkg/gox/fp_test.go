@@ -237,7 +237,7 @@ func TestCoalesce_ReturnsFirstNonZero(t *testing.T) {
 
 func TestCoalesce_ReturnsZeroIfAllZero(t *testing.T) {
 	result := Coalesce("", "", "")
-	assert.Equal(t, "", result)
+	assert.Empty(t, result)
 }
 
 func TestCoalescePtr_ReturnsFirstNonNil(t *testing.T) {

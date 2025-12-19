@@ -70,13 +70,13 @@ func Max[T Ordered](items ...T) T {
 	if len(items) == 0 {
 		panic("Max requires at least one argument")
 	}
-	max := items[0]
+	maxVal := items[0]
 	for _, item := range items[1:] {
-		if item > max {
-			max = item
+		if item > maxVal {
+			maxVal = item
 		}
 	}
-	return max
+	return maxVal
 }
 
 // MaxSlice 返回切片中的最大值。
@@ -86,13 +86,13 @@ func MaxSlice[T Ordered](items []T) (T, bool) {
 		var zero T
 		return zero, false
 	}
-	max := items[0]
+	maxVal := items[0]
 	for _, item := range items[1:] {
-		if item > max {
-			max = item
+		if item > maxVal {
+			maxVal = item
 		}
 	}
-	return max, true
+	return maxVal, true
 }
 
 // MaxBy 返回选择器函数返回最大值的元素。
@@ -119,13 +119,13 @@ func Min[T Ordered](items ...T) T {
 	if len(items) == 0 {
 		panic("Min requires at least one argument")
 	}
-	min := items[0]
+	minVal := items[0]
 	for _, item := range items[1:] {
-		if item < min {
-			min = item
+		if item < minVal {
+			minVal = item
 		}
 	}
-	return min
+	return minVal
 }
 
 // MinSlice 返回切片中的最小值。
@@ -135,13 +135,13 @@ func MinSlice[T Ordered](items []T) (T, bool) {
 		var zero T
 		return zero, false
 	}
-	min := items[0]
+	minVal := items[0]
 	for _, item := range items[1:] {
-		if item < min {
-			min = item
+		if item < minVal {
+			minVal = item
 		}
 	}
-	return min, true
+	return minVal, true
 }
 
 // MinBy 返回选择器函数返回最小值的元素。
