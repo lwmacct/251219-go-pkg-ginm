@@ -13,7 +13,7 @@ func TestNewAPIError(t *testing.T) {
 	assert.Equal(t, http.StatusBadRequest, err.HTTPStatus)
 	assert.Equal(t, 400, err.Code)
 	assert.Equal(t, "bad request", err.Message)
-	assert.Nil(t, err.Err)
+	assert.NoError(t, err.Err)
 }
 
 func TestWrapAPIError(t *testing.T) {
@@ -37,7 +37,7 @@ func TestAPIError_Unwrap(t *testing.T) {
 	inner := errors.New("inner")
 	err := WrapAPIError(500, 500, "outer", inner)
 	assert.Equal(t, inner, err.Unwrap())
-	assert.True(t, errors.Is(err, inner))
+	assert.ErrorIs(t, err, inner)
 }
 
 func TestErrBadRequest(t *testing.T) {
@@ -75,7 +75,7 @@ func TestErrInternalWrap(t *testing.T) {
 	cause := errors.New("db connection failed")
 	err := ErrInternalWrap("database error", cause)
 	assert.Equal(t, http.StatusInternalServerError, err.HTTPStatus)
-	assert.True(t, errors.Is(err, cause))
+	assert.ErrorIs(t, err, cause)
 }
 
 func TestErrNotImplemented(t *testing.T) {
@@ -102,7 +102,7 @@ func TestBindError_Unwrap(t *testing.T) {
 	cause := errors.New("cause")
 	err := NewBindError("query", cause)
 	assert.Equal(t, cause, err.Unwrap())
-	assert.True(t, errors.Is(err, cause))
+	assert.ErrorIs(t, err, cause)
 }
 
 func TestValidationErrors_Add(t *testing.T) {

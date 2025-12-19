@@ -61,8 +61,7 @@ func ParseFloat32(s string) Result[float32] {
 	return ROk(float32(v))
 }
 
-// ParseBool 将字符串解析为 bool。
-// 接受: 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False
+// ParseBool 解析布尔值，接受: 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False
 func ParseBool(s string) Result[bool] {
 	v, err := strconv.ParseBool(s)
 	if err != nil {

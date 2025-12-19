@@ -167,8 +167,8 @@ func TestUnzip_SplitsPairs(t *testing.T) {
 		First  int
 		Second string
 	}{
-		{1, "a"},
-		{2, "b"},
+		{First: 1, Second: "a"},
+		{First: 2, Second: "b"},
 	}
 	a, b := Unzip(pairs)
 	assert.Equal(t, []int{1, 2}, a)

@@ -67,20 +67,20 @@ func TestMultiError_Error_CombinesMultipleErrors(t *testing.T) {
 
 func TestMultiError_ErrorOrNil_ReturnsNilForNoErrors(t *testing.T) {
 	m := NewMultiError()
-	assert.Nil(t, m.ErrorOrNil())
+	assert.NoError(t, m.ErrorOrNil())
 }
 
 func TestMultiError_ErrorOrNil_ReturnsSelfForErrors(t *testing.T) {
 	m := NewMultiError()
 	m.Add(errors.New("error"))
 	err := m.ErrorOrNil()
-	assert.NotNil(t, err)
+	require.Error(t, err)
 	assert.Equal(t, m, err)
 }
 
 func TestMultiError_First_ReturnsNilForNoErrors(t *testing.T) {
 	m := NewMultiError()
-	assert.Nil(t, m.First())
+	assert.NoError(t, m.First())
 }
 
 func TestMultiError_First_ReturnsFirstError(t *testing.T) {
@@ -104,7 +104,7 @@ func TestMultiError_ImplementsErrorInterface(t *testing.T) {
 	m := NewMultiError()
 	m.Add(errors.New("test"))
 	var err error = m
-	assert.NotNil(t, err)
+	assert.Error(t, err)
 }
 
 func TestMultiError_WorksWithErrorsIs(t *testing.T) {
@@ -112,5 +112,5 @@ func TestMultiError_WorksWithErrorsIs(t *testing.T) {
 	m := NewMultiError()
 	m.Add(errors.New("other"))
 	m.Add(target)
-	assert.True(t, errors.Is(m, target))
+	assert.ErrorIs(t, m, target)
 }

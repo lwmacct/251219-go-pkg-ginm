@@ -7,10 +7,10 @@ import (
 
 // APIError 表示结构化的 API 错误。
 type APIError struct {
+	Err        error
+	Message    string
 	HTTPStatus int
 	Code       int
-	Message    string
-	Err        error
 }
 
 func (e *APIError) Error() string {
@@ -82,13 +82,13 @@ func ErrInternalWrap(message string, err error) *APIError {
 
 // ErrNotImplemented 创建 501 未实现错误。
 func ErrNotImplemented(method string) *APIError {
-	return NewAPIError(http.StatusNotImplemented, http.StatusNotImplemented, fmt.Sprintf("%s not implemented", method))
+	return NewAPIError(http.StatusNotImplemented, http.StatusNotImplemented, method+" not implemented")
 }
 
 // BindError 表示请求绑定错误。
 type BindError struct {
-	Source string // "body", "query", "uri", "header", "form"
 	Err    error
+	Source string
 }
 
 func (e *BindError) Error() string {

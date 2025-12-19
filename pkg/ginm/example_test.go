@@ -1,6 +1,7 @@
 package ginm_test
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/lwmacct/251219-go-pkg-ginm/pkg/ginm"
@@ -103,7 +104,7 @@ func ExampleErrNotFound() {
 }
 
 func ExampleNewBindError() {
-	err := ginm.NewBindError("json", fmt.Errorf("invalid syntax"))
+	err := ginm.NewBindError("json", errors.New("invalid syntax"))
 	fmt.Println(err.Source)
 	// Output:
 	// json

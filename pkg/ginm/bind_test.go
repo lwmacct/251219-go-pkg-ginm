@@ -15,14 +15,14 @@ func init() {
 }
 
 type testRequest struct {
-	Name  string `json:"name" form:"name" binding:"required"`
-	Email string `json:"email" form:"email"`
+	Name  string `binding:"required" form:"name"  json:"name"`
+	Email string `form:"email"       json:"email"`
 }
 
 type testQueryParams struct {
+	Search   string `form:"search"`
 	Page     int    `form:"page"`
 	PageSize int    `form:"page_size"`
-	Search   string `form:"search"`
 }
 
 func createTestContext(method, path string, body []byte, contentType string) (*gin.Context, *httptest.ResponseRecorder) {
@@ -54,7 +54,7 @@ func TestBindJSON_ValidationError(t *testing.T) {
 	require.Error(t, err)
 
 	var bindErr *BindError
-	assert.ErrorAs(t, err, &bindErr)
+	require.ErrorAs(t, err, &bindErr)
 	assert.Equal(t, "json", bindErr.Source)
 }
 

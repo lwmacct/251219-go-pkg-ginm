@@ -8,15 +8,10 @@ import (
 
 // IDParam 表示资源 ID 的 URI 参数。
 type IDParam[ID any] struct {
-	ID ID `uri:"id" binding:"required"`
+	ID ID `binding:"required" uri:"id"`
 }
 
-// Resource 定义类型安全的 RESTful 资源接口。
-// T: 实体类型
-// ID: ID 类型（int64、string、uuid.UUID 等）
-// CI: CreateInput - 创建操作的输入类型
-// UI: UpdateInput - 更新操作的输入类型
-// LQ: ListQuery - 列表操作的查询参数类型
+// Resource 是 RESTful 资源接口，LQ 为列表查询参数类型
 type Resource[T any, ID comparable, CI any, UI any, LQ any] interface {
 	// List 返回分页的元素列表。
 	List(c *gin.Context, query *LQ) (PageResponse[T], error)

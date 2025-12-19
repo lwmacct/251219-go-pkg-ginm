@@ -24,10 +24,10 @@ func normalizePage(page, pageSize int) (int, int) {
 
 // PageQuery 是标准的分页查询结构体。
 type PageQuery struct {
-	Page     int    `form:"page" binding:"min=0"`
-	PageSize int    `form:"page_size" binding:"min=0,max=100"`
 	Sort     string `form:"sort"`
-	Order    string `form:"order" binding:"omitempty,oneof=asc desc"`
+	Order    string `binding:"omitempty,oneof=asc desc" form:"order"`
+	Page     int    `binding:"min=0"                    form:"page"`
+	PageSize int    `binding:"min=0,max=100"            form:"page_size"`
 }
 
 // Normalize 返回应用默认值后的 PageQuery。

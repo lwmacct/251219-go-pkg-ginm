@@ -102,14 +102,14 @@ func TestResult_Get_ReturnsZeroAndFalse(t *testing.T) {
 func TestResult_GetWithError_ReturnsValueAndNil(t *testing.T) {
 	r := ROk(42)
 	val, err := r.GetWithError()
-	assert.NoError(t, err)
+	require.NoError(t, err)
 	assert.Equal(t, 42, val)
 }
 
 func TestResult_GetWithError_ReturnsZeroAndError(t *testing.T) {
 	r := RErr[int](assert.AnError)
 	val, err := r.GetWithError()
-	assert.Error(t, err)
+	require.Error(t, err)
 	assert.Equal(t, 0, val)
 }
 

@@ -7,9 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// HandlerFunc 是泛型处理器函数类型。
-// Req: 请求类型（如果不需要请求体可使用 struct{}）
-// Resp: 响应数据类型
+// HandlerFunc 是泛型处理器类型，Resp 为响应数据类型
 type HandlerFunc[Req, Resp any] func(c *gin.Context, req *Req) (Resp, error)
 
 // HandlerFuncNoReq 是不需要请求绑定的处理器。

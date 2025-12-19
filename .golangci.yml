@@ -1,38 +1,44 @@
 linters:
-  enable-all: true
-  disable:
-    # 已废弃
-    - execinquery
-    - exportloopref
-    - gomnd
-    # 与其他 linter 冲突
-    - gofumpt # 与 gofmt 冲突
-    - gci # 与 goimports 冲突
-    - depguard # 需要配置依赖白名单
-    # 过于严格/噪音大
-    - wrapcheck # 要求所有错误都 wrap
-    - exhaustruct # 要求所有字段都初始化
-    - ireturn # 禁止返回接口
-    - varnamelen # 变量名长度限制
-    - nlreturn # return 前必须空行
-    - wsl # 空行规则过严
-    - funlen # 函数长度限制
-    - gocognit # 认知复杂度
-    - cyclop # 圈复杂度
-    - lll # 行长度限制
-    - godox # 禁止 TODO/FIXME
+  disable-all: true
+  enable:
+    # 默认启用的核心 linter
+    - errcheck # 检查未处理的错误
+    - govet # 官方静态分析
+    - staticcheck # 高级静态分析
+    - unused # 未使用的代码
+    - gosimple # 简化代码建议
+    - ineffassign # 无效赋值检测
+    - typecheck # 类型检查
+    # 代码格式
+    - gofmt # 格式化检查
+    - goimports # import 排序
+    # 安全/Bug
+    - gosec # 安全漏洞检测
+    - nilerr # nil 错误检测
+    - bodyclose # HTTP body 关闭检查
+    - copyloopvar # 循环变量拷贝检查
+    # 代码质量
+    - unconvert # 不必要的类型转换
+    - misspell # 拼写检查
+    - nakedret # 裸返回检查
+    - prealloc # 切片预分配建议
+    - noctx # HTTP 请求 context 检查
+    - errchkjson # JSON 错误检查
+    # 注释/文档
+    - stylecheck # 注释格式规范 (exported func 注释格式)
+    # 测试质量
+    - thelper # 测试 helper 必须调用 t.Helper()
+    - testifylint # testify 断言最佳实践
 
 linters-settings:
   govet:
     enable-all: true
+    disable:
+      - fieldalignment # 禁用字段对齐检查
   misspell:
     locale: US
   nakedret:
     max-func-lines: 30
-  tagliatelle:
-    case:
-      rules:
-        json: snake
 
 issues:
   exclude-use-default: false

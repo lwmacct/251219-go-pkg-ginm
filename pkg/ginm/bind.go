@@ -103,8 +103,7 @@ type BindConfig struct {
 	Body  bool
 }
 
-// BindAll 从多个来源绑定到单个结构体。
-// 优先级: URI > Query > Body
+// BindAll 绑定所有请求参数，优先级: URI > Query > Body
 func BindAll[T any](c *gin.Context, config BindConfig) (*T, error) {
 	var req T
 

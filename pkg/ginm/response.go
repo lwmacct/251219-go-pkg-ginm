@@ -11,10 +11,10 @@ import (
 
 // Response 是带泛型数据类型的标准 API 响应包装器。
 type Response[T any] struct {
-	Code    int    `json:"code"`
+	Data    T      `json:"data,omitempty"`
 	Message string `json:"message,omitempty"`
 	Error   string `json:"error,omitempty"`
-	Data    T      `json:"data,omitempty"`
+	Code    int    `json:"code"`
 }
 
 // OK 创建带数据的成功响应。
